@@ -26,7 +26,12 @@ let j = 18;
 function categoryitem(id) {
     notes = "";
     console.log(id);
+    let nav = document.getElementsByClassName('nav-link');
+    for (let index = 0; index < nav.length; index++) {
+       nav[index].classList.remove('active');
+    }
     spinner.style.display = "block";
+    document.getElementById(id).classList.add('active');
     loaddata(id);
     load = id;
 }
@@ -225,7 +230,71 @@ function loadmore(s) {
 }
 
 
-
+//country code
+function country(id){
+    console.log(id);
+    let link  = `https://saurav.tech/NewsAPI/top-headlines/category/${load}/${id}.json`;
+    accordionExample.innerText = " ";
+     fetch(link).then((response) => {
+        return response.json();
+}).then((data)=>{
+    console.log(data);
+    let a = data.articles;
+    let notes3;
+    for (let e = 0; e < a.length; e++) {
+        if (e > i) {
+            break;
+        }
+        let article2 = `
+        <div class="col-auto mx-auto my-2">  
+          <div class="card" style="width: 18rem;">
+              <img class="card-img-top" src=${a[e].urlToImage ? a[e].urlToImage : "https://s.w-x.co/in-earthshine%281%29.jpg"}  alt="image">
+              <div class="card-body">
+                  <h5 class="card-title">${a[e]['title'] ? a[e]['title'] : ""}</h5>
+                  <p class="card-text"> ${a[e]['content'] ? a[e]['content'].slice(0, 157) : ""}...</p>
+                  <a href="${a[e]['url']}" target="_blank">Read More</a>
+                  <small class="text-muted ms-5 ps-4">${a[e].publishedAt.slice(0, 10)}</small>
+              </div>
+          </div>    
+        </div>`;
+        // console.log(article);
+        notes3 += article2;
+    }
+    accordionExample.innerHTML = notes3;
+} )
+}
+function sourcenews(id){
+    console.log(id);
+    let link  = `https://saurav.tech/NewsAPI/everything/${id}.json`;
+    accordionExample.innerText = " ";
+     fetch(link).then((response) => {
+        return response.json();
+}).then((data)=>{
+    console.log(data);
+    let a = data.articles;
+    let notes3;
+    for (let e = 0; e < a.length; e++) {
+        if (e > i) {
+            break;
+        }
+        let article3 = `
+        <div class="col-auto mx-auto my-2">  
+          <div class="card" style="width: 18rem;">
+              <img class="card-img-top" src=${a[e].urlToImage ? a[e].urlToImage : "https://s.w-x.co/in-earthshine%281%29.jpg"}  alt="image">
+              <div class="card-body">
+                  <h5 class="card-title">${a[e]['title'] ? a[e]['title'] : ""}</h5>
+                  <p class="card-text"> ${a[e]['content'] ? a[e]['content'].slice(0, 157) : ""}...</p>
+                  <a href="${a[e]['url']}" target="_blank">Read More</a>
+                  <small class="text-muted ms-5 ps-4">${a[e].publishedAt.slice(0, 10)}</small>
+              </div>
+          </div>    
+        </div>`;
+        // console.log(article);
+        notes3 += article3;
+    }
+    accordionExample.innerHTML = notes3;
+} )
+}
 
 window.addEventListener('scroll', () => {
     if (scrollY + window.innerHeight >= document.documentElement.scrollHeight) {
@@ -251,10 +320,7 @@ function searchnews(){
 let searchlink = `https://gnews.io/api/v4/search?q=${searchtxt}&token=51fdb444c9b286bfcd1450513ed0eae0`;
     console.log(searchtxt);
 
-    if(!searchlink){
-           accordionExample.innerHTML = "Sorry, your result is not found..." 
-    }
-    else{
+ 
 
     
     //start xhr
@@ -280,7 +346,10 @@ let searchlink = `https://gnews.io/api/v4/search?q=${searchtxt}&token=51fdb444c9
         if (this.status === 200) {
             let obj = JSON.parse(this.responseText);
            
-
+                if(obj.totalArticles ==0){
+                    console.log("blank");
+                    accordionExample.innerText = "Sorry, Your result is not found";
+                }
             //showing news
             let loop = obj.articles;
            
@@ -311,4 +380,4 @@ let searchlink = `https://gnews.io/api/v4/search?q=${searchtxt}&token=51fdb444c9
 
     xhr.send();
     }
-}
+
