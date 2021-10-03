@@ -14,7 +14,7 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top  bg-dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">News</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -25,28 +25,15 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        <a class="nav-link active" type="button" aria-current="page" onclick="categoryitem(this.id)" id="general">General</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                            Dropdown
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
+                        <a class="nav-link" type="button"  onclick="categoryitem(this.id)" id="business">business</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link disabled">Disabled</a>
+                        <a class="nav-link" type="button"  onclick="categoryitem(this.id)" id="sports">Sports</a>
                     </li>
+                   
                 </ul>
                 <form class="d-flex">
                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
@@ -57,11 +44,7 @@
     </nav>
 
     <div class="container my-3">
-        <!-- <h3 class="text-center">Top news</h3> -->
-        <!-- <div>
-            <span class="d-flex justify-content-center">Top news</span>
-            <span class="d-flex justify-content-end">Top news</span>
-        </div> -->
+      
         <div class="d-flex bd-highlight">
             <div class="text-center col-11 h2 bd-highlight "><span class="ms-5">Top News</span></div>
             <button type="button" class="btn-sm btn btn-outline-primary rounded-3" data-bs-toggle="modal"
@@ -79,7 +62,7 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <button type="button" class="btn btn-secondary" id="science">science</button>
+                            <button type="button" class="btn btn-secondary" id="business"  >Business</button>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -98,9 +81,8 @@
             </div>
         </div>
 
-        <div class="accordion" id="accordionExample">
-
-
+        <div class="row" id="accordionExample">
+            
         </div>
         <div class="spinner text-center my-4" id="spinner">
             <div class=" text-warning" role="status" id="endspinner">
