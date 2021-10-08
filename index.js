@@ -28,7 +28,7 @@ function categoryitem(id) {
     console.log(id);
     let nav = document.getElementsByClassName('nav-link');
     for (let index = 0; index < nav.length; index++) {
-       nav[index].classList.remove('active');
+        nav[index].classList.remove('active');
     }
     spinner.style.display = "block";
     document.getElementById(id).classList.add('active');
@@ -36,6 +36,7 @@ function categoryitem(id) {
     load = id;
 }
 
+window.addEventListener('offline', () => alert('Please connect to internet Or try again...'))
 
 function loaddata(s) {
     let category = s;
@@ -73,22 +74,51 @@ function loaddata(s) {
             //    console.log(obj.articles);
 
             //for loop
+            let date = new Date();
             for (let e = 0; e < loop.length; e++) {
                 if (e > i) {
                     break;
                 }
-                let article = `
-                <div class="col-auto mx-auto my-2">  
-                  <div class="card" style="width: 18rem;">
+                let article = 
+                // `
+                // <div class="col-auto mx-auto my-2">  
+                //   <div class="card" style="width: 18rem;">
+                //       <img class="card-img-top" src=${loop[e].urlToImage ? loop[e].urlToImage : "https://s.w-x.co/in-earthshine%281%29.jpg"}  alt="image">
+                //       <div class="card-body">
+                //           <h5 class="card-title">${loop[e]['title'] ? loop[e]['title'] : ""}</h5>
+                //           <p class="card-text"> ${loop[e]['content'] ? loop[e]['content'].slice(0, 157) : ""}...</p>
+                //           <a href="${loop[e]['url']}" target="_blank">Read More</a>
+                //           <small class="text-muted ms-5 ps-4">${loop[e].publishedAt.slice(0, 10)}</small>
+                //       </div>
+                //   </div>    
+                // </div>`;
+
+
+                `<div class="col-auto mx-auto my-2">  
+                  <div class="card bg-light" style="width: 18rem;"> 
+                   <span class="position-absolute top-0  translate-middle badge rounded-pill bg-danger" style="left : 96%">
+                         ${loop[e].source.name}
+                    </span>
                       <img class="card-img-top" src=${loop[e].urlToImage ? loop[e].urlToImage : "https://s.w-x.co/in-earthshine%281%29.jpg"}  alt="image">
                       <div class="card-body">
                           <h5 class="card-title">${loop[e]['title'] ? loop[e]['title'] : ""}</h5>
                           <p class="card-text"> ${loop[e]['content'] ? loop[e]['content'].slice(0, 157) : ""}...</p>
-                          <a href="${loop[e]['url']}" target="_blank">Read More</a>
-                          <small class="text-muted ms-5 ps-4">${loop[e].publishedAt.slice(0, 10)}</small>
+                         
+                          <div class="d-flex">
+                            <div class="click">
+                                <a href=${loop[e].url} rel="noreferrer" target="_blank" class="my-2 btn btn-outline-primary btn-sm ">Read more</a>
+                            </div>
+                            <div class="row d-inline-block ms-2">
+                                <small class="col pe-0"><small class="text-muted ms-4 ps-4">${loop[e].publishedAt.slice(0, 10)} : Date</small></small>
+                                <small class="col pe-0 ps-0"><small class="text-muted d-flex justify-content-end ps-4">${loop[e].author ? loop[e].author : "Unknown"} : By</small></small>
+                            </div>
+                        </div>
                       </div>
                   </div>    
                 </div>`;
+
+
+
                 // console.log(article);
                 notes += article;
             }
@@ -176,18 +206,45 @@ function loadmore(s) {
                 if (e > j) {
                     break;
                 }
-                let article2 = `
-                <div class="col-auto mx-auto my-2">  
-                  <div class="card" style="width: 18rem;">
-                      <img src=${loop[e].urlToImage ? loop[e].urlToImage : "https://s.w-x.co/in-earthshine%281%29.jpg"} class="card-img-top" alt="image">
-                      <div class="card-body">
-                          <h5 class="card-title">${loop[e]['title'] ? loop[e]['title'] : ""}</h5>
-                          <p class="card-text"> ${loop[e]['content'] ? loop[e]['content'].slice(0, 157) : ""}...</p>
-                          <a href="${loop[e]['url']}" target="_blank">Read More</a>
-                          <small class="text-muted ms-5 ps-4">${loop[e].publishedAt.slice(0, 10)}</small>
+                let article2 =
+                //  `
+                // <div class="col-auto mx-auto my-2">  
+                //   <div class="card" style="width: 18rem;">
+                //       <img src=${loop[e].urlToImage ? loop[e].urlToImage : "https://s.w-x.co/in-earthshine%281%29.jpg"} class="card-img-top" alt="image">
+                //       <div class="card-body">
+                //           <h5 class="card-title">${loop[e]['title'] ? loop[e]['title'] : ""}</h5>
+                //           <p class="card-text"> ${loop[e]['content'] ? loop[e]['content'].slice(0, 157) : ""}...</p>
+                //           <a href="${loop[e]['url']}" target="_blank">Read More</a>
+                //           <small class="text-muted ms-5 ps-4">${loop[e].publishedAt.slice(0, 10)}</small>
+                //       </div>
+                //   </div>    
+                // </div>`
+                
+                `<div class="col-auto mx-auto my-2">  
+                <div class="card bg-light" style="width: 18rem;"> 
+                 <span class="position-absolute top-0  translate-middle badge rounded-pill bg-danger" style="left : 96%">
+                       ${loop[e].source.name}
+                  </span>
+                    <img class="card-img-top" src=${loop[e].urlToImage ? loop[e].urlToImage : "https://s.w-x.co/in-earthshine%281%29.jpg"}  alt="image">
+                    <div class="card-body">
+                        <h5 class="card-title">${loop[e]['title'] ? loop[e]['title'] : ""}</h5>
+                        <p class="card-text"> ${loop[e]['content'] ? loop[e]['content'].slice(0, 157) : ""}...</p>
+                       
+                        <div class="d-flex">
+                          <div class="click">
+                              <a href=${loop[e].url} rel="noreferrer" target="_blank" class="my-2 btn btn-outline-primary btn-sm ">Read more</a>
+                          </div>
+                          <div class="row d-inline-block ms-2">
+                              <small class="col pe-0"><small class="text-muted ms-4 ps-4">${loop[e].publishedAt.slice(0, 10)} : Date</small></small>
+                              <small class="col pe-0 ps-0"><small class="text-muted d-flex justify-content-end ps-4">${loop[e].author ? loop[e].author : "Unknown"} : By</small></small>
+                          </div>
                       </div>
-                  </div>    
-                </div>`;
+                    </div>
+                </div>    
+              </div>`
+
+
+                ;
                 // console.log(article);
                 notes2 += article2;
 
@@ -231,21 +288,21 @@ function loadmore(s) {
 
 
 //country code
-function country(id){
+function country(id) {
     console.log(id);
-    let link  = `https://saurav.tech/NewsAPI/top-headlines/category/${load}/${id}.json`;
+    let link = `https://saurav.tech/NewsAPI/top-headlines/category/${load}/${id}.json`;
     accordionExample.innerText = " ";
-     fetch(link).then((response) => {
+    fetch(link).then((response) => {
         return response.json();
-}).then((data)=>{
-    console.log(data);
-    let a = data.articles;
-    let notes3;
-    for (let e = 0; e < a.length; e++) {
-        if (e > i) {
-            break;
-        }
-        let article2 = `
+    }).then((data) => {
+        console.log(data);
+        let a = data.articles;
+        let notes3;
+        for (let e = 0; e < a.length; e++) {
+            if (e > i) {
+                break;
+            }
+            let article2 = `
         <div class="col-auto mx-auto my-2">  
           <div class="card" style="width: 18rem;">
               <img class="card-img-top" src=${a[e].urlToImage ? a[e].urlToImage : "https://s.w-x.co/in-earthshine%281%29.jpg"}  alt="image">
@@ -257,27 +314,27 @@ function country(id){
               </div>
           </div>    
         </div>`;
-        // console.log(article);
-        notes3 += article2;
-    }
-    accordionExample.innerHTML = notes3;
-} )
+            // console.log(article);
+            notes3 += article2;
+        }
+        accordionExample.innerHTML = notes3;
+    })
 }
-function sourcenews(id){
+function sourcenews(id) {
     console.log(id);
-    let link  = `https://saurav.tech/NewsAPI/everything/${id}.json`;
+    let link = `https://saurav.tech/NewsAPI/everything/${id}.json`;
     accordionExample.innerText = " ";
-     fetch(link).then((response) => {
+    fetch(link).then((response) => {
         return response.json();
-}).then((data)=>{
-    console.log(data);
-    let a = data.articles;
-    let notes3;
-    for (let e = 0; e < a.length; e++) {
-        if (e > i) {
-            break;
-        }
-        let article3 = `
+    }).then((data) => {
+        console.log(data);
+        let a = data.articles;
+        let notes3;
+        for (let e = 0; e < a.length; e++) {
+            if (e > i) {
+                break;
+            }
+            let article3 = `
         <div class="col-auto mx-auto my-2">  
           <div class="card" style="width: 18rem;">
               <img class="card-img-top" src=${a[e].urlToImage ? a[e].urlToImage : "https://s.w-x.co/in-earthshine%281%29.jpg"}  alt="image">
@@ -289,11 +346,11 @@ function sourcenews(id){
               </div>
           </div>    
         </div>`;
-        // console.log(article);
-        notes3 += article3;
-    }
-    accordionExample.innerHTML = notes3;
-} )
+            // console.log(article);
+            notes3 += article3;
+        }
+        accordionExample.innerHTML = notes3;
+    })
 }
 
 window.addEventListener('scroll', () => {
@@ -309,20 +366,20 @@ window.addEventListener('scroll', () => {
 
 
 //for search bar
-function searchnews(){
+function searchnews() {
     let accordionExample = document.getElementById('accordionExample');
     accordionExample.innerHTML = '';
     spinner.style.display = "block";
-    let m ;
+    let m;
     let searchtxt = document.getElementById("search").value;
     console.log(searchtxt);
 
-let searchlink = `https://gnews.io/api/v4/search?q=${searchtxt}&token=51fdb444c9b286bfcd1450513ed0eae0`;
+    let searchlink = `https://gnews.io/api/v4/search?q=${searchtxt}&token=51fdb444c9b286bfcd1450513ed0eae0`;
     console.log(searchtxt);
 
- 
 
-    
+
+
     //start xhr
     let xhr = new XMLHttpRequest();
 
@@ -345,24 +402,24 @@ let searchlink = `https://gnews.io/api/v4/search?q=${searchtxt}&token=51fdb444c9
     xhr.onload = function () {
         if (this.status === 200) {
             let obj = JSON.parse(this.responseText);
-           
-                if(obj.totalArticles ==0){
-                    console.log("blank");
-                    accordionExample.innerText = "Sorry, Your result is not found";
-                }
+
+            if (obj.totalArticles == 0) {
+                console.log("blank");
+                accordionExample.innerText = "Sorry, Your result is not found";
+            }
             //showing news
             let loop = obj.articles;
-           
+
             loop.map(function (e) {
                 let article = `
                           <div class="col-auto mx-auto my-2">  
                             <div class="card" style="width: 18rem;">
-                                <img src=${e.image?e.image:"https://s.w-x.co/in-earthshine%281%29.jpg"} class="card-img-top" alt="image">
+                                <img src=${e.image ? e.image : "https://s.w-x.co/in-earthshine%281%29.jpg"} class="card-img-top" alt="image">
                                 <div class="card-body">
-                                    <h5 class="card-title">${e['title']?e['title']: ""}</h5>
-                                    <p class="card-text"> ${e['content']?e['content'].slice(0,157) :""}...</p>
+                                    <h5 class="card-title">${e['title'] ? e['title'] : ""}</h5>
+                                    <p class="card-text"> ${e['content'] ? e['content'].slice(0, 157) : ""}...</p>
                                     <a href="${e['url']}" target="_blank">Read More</a>
-                                    <small class="text-muted ms-5 ps-4">${e.publishedAt.slice(0,10)}</small>
+                                    <small class="text-muted ms-5 ps-4">${e.publishedAt.slice(0, 10)}</small>
                                 </div>
                             </div>    
                           </div>`;
@@ -379,5 +436,5 @@ let searchlink = `https://gnews.io/api/v4/search?q=${searchtxt}&token=51fdb444c9
     }
 
     xhr.send();
-    }
+}
 
