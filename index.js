@@ -73,7 +73,6 @@ function loaddata(s) {
     console.log(link);
     xhr.open('GET', link, true);
 
-
     xhr.onreadystatechange = function () {
         // console.log("ready state" + this.readyState);
 
@@ -218,7 +217,7 @@ function loadmore(s) {
             console.log(obj);
             // title = obj.articles[2].title;
             // content = obj.articles[2].content;
-
+            topbar.hide();
             //showing news
             let accordionExample = document.getElementById('accordionExample');
             let loop = obj.articles;
@@ -305,7 +304,7 @@ function loadmore(s) {
             console.log("Some error occured..");
         }
     }
-
+    topbar.show();
     xhr.send();
 
 }
