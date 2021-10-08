@@ -15,11 +15,16 @@ let token = `51fdb444c9b286bfcd1450513ed0eae0;`
 let spin = `<div class="spinner-border text-primary" role="status">
 <span class="visually-hidden">Loading...</span>
 </div>`;
-window.addEventListener('load', () => {
-    loaddata('general')
-});
 
-let load = 'sports';
+
+// console.log('firstly: ' + (window.navigator.onLine ? 'online' : 'offline'));
+// window.addEventListener('online',alert('you r online'));
+// window.addEventListener('offline',alert('you r offline'));
+
+// setTimeout(() => {
+//     console.log('window.navigator.onLine is' + window.navigator.onLine);
+// }, 3000);
+let load = 'general';
 let notes = '';
 let i = 9;
 let j = 18;
@@ -36,7 +41,25 @@ function categoryitem(id) {
     load = id;
 }
 
-window.addEventListener('offline', () => alert('Please connect to internet Or try again...'))
+loaddata(load);
+// window.addEventListener('offline', () => alert('Please connect to internet Or try again...'))
+
+topbar.config({
+    autoRun: true,
+    barThickness: 3,
+    barColors:
+    {
+        0: "rgba(255,  0, 0,1)",
+        ".25": "rgba(255,  0, 0, 1)",
+        ".50": "rgba(255, 0, 0,  1)",
+        ".75": "rgba(255, 0, 0,  1)",
+        "1.0": "rgba(255, 0,  0,  1)",
+    }
+    ,
+    shadowBlur: 20,
+    shadowColor: "rgba(0,   0,   0,   .6)",
+    className: null,
+})
 
 function loaddata(s) {
     let category = s;
@@ -66,7 +89,7 @@ function loaddata(s) {
             console.log(obj);
             // title = obj.articles[2].title;
             // content = obj.articles[2].content;
-
+            topbar.hide();
             //showing news
             let accordionExample = document.getElementById('accordionExample');
             let loop = obj.articles;
@@ -75,27 +98,26 @@ function loaddata(s) {
 
 
             //for loop
-            let date = new Date();
             for (let e = 0; e < loop.length; e++) {
                 if (e > i) {
                     break;
                 }
-                let article = 
-                // `
-                // <div class="col-auto mx-auto my-2">  
-                //   <div class="card" style="width: 18rem;">
-                //       <img class="card-img-top" src=${loop[e].urlToImage ? loop[e].urlToImage : "https://s.w-x.co/in-earthshine%281%29.jpg"}  alt="image">
-                //       <div class="card-body">
-                //           <h5 class="card-title">${loop[e]['title'] ? loop[e]['title'] : ""}</h5>
-                //           <p class="card-text"> ${loop[e]['content'] ? loop[e]['content'].slice(0, 157) : ""}...</p>
-                //           <a href="${loop[e]['url']}" target="_blank">Read More</a>
-                //           <small class="text-muted ms-5 ps-4">${loop[e].publishedAt.slice(0, 10)}</small>
-                //       </div>
-                //   </div>    
-                // </div>`;
+                let article =
+                    // `
+                    // <div class="col-auto mx-auto my-2">  
+                    //   <div class="card" style="width: 18rem;">
+                    //       <img class="card-img-top" src=${loop[e].urlToImage ? loop[e].urlToImage : "https://s.w-x.co/in-earthshine%281%29.jpg"}  alt="image">
+                    //       <div class="card-body">
+                    //           <h5 class="card-title">${loop[e]['title'] ? loop[e]['title'] : ""}</h5>
+                    //           <p class="card-text"> ${loop[e]['content'] ? loop[e]['content'].slice(0, 157) : ""}...</p>
+                    //           <a href="${loop[e]['url']}" target="_blank">Read More</a>
+                    //           <small class="text-muted ms-5 ps-4">${loop[e].publishedAt.slice(0, 10)}</small>
+                    //       </div>
+                    //   </div>    
+                    // </div>`;
 
 
-                `<div class="col-auto mx-auto my-2">  
+                    `<div class="col-auto mx-auto my-2">  
                   <div class="card bg-light" style="width: 18rem;"> 
                    <span class="position-absolute top-0  translate-middle badge rounded-pill bg-danger" >
                          ${loop[e].source.name}
@@ -125,7 +147,7 @@ function loaddata(s) {
             }
 
 
-            
+
 
             // loop.map(function (e) {
             //     let article = `
@@ -160,7 +182,8 @@ function loaddata(s) {
             console.log("Some error occured..");
         }
     }
-
+    topbar.show();
+    accordionExample.innerHTML = "";
     xhr.send();
 
 }
@@ -208,20 +231,20 @@ function loadmore(s) {
                     break;
                 }
                 let article2 =
-                //  `
-                // <div class="col-auto mx-auto my-2">  
-                //   <div class="card" style="width: 18rem;">
-                //       <img src=${loop[e].urlToImage ? loop[e].urlToImage : "https://s.w-x.co/in-earthshine%281%29.jpg"} class="card-img-top" alt="image">
-                //       <div class="card-body">
-                //           <h5 class="card-title">${loop[e]['title'] ? loop[e]['title'] : ""}</h5>
-                //           <p class="card-text"> ${loop[e]['content'] ? loop[e]['content'].slice(0, 157) : ""}...</p>
-                //           <a href="${loop[e]['url']}" target="_blank">Read More</a>
-                //           <small class="text-muted ms-5 ps-4">${loop[e].publishedAt.slice(0, 10)}</small>
-                //       </div>
-                //   </div>    
-                // </div>`
-                
-                `<div class="col-auto mx-auto my-2">  
+                    //  `
+                    // <div class="col-auto mx-auto my-2">  
+                    //   <div class="card" style="width: 18rem;">
+                    //       <img src=${loop[e].urlToImage ? loop[e].urlToImage : "https://s.w-x.co/in-earthshine%281%29.jpg"} class="card-img-top" alt="image">
+                    //       <div class="card-body">
+                    //           <h5 class="card-title">${loop[e]['title'] ? loop[e]['title'] : ""}</h5>
+                    //           <p class="card-text"> ${loop[e]['content'] ? loop[e]['content'].slice(0, 157) : ""}...</p>
+                    //           <a href="${loop[e]['url']}" target="_blank">Read More</a>
+                    //           <small class="text-muted ms-5 ps-4">${loop[e].publishedAt.slice(0, 10)}</small>
+                    //       </div>
+                    //   </div>    
+                    // </div>`
+
+                    `<div class="col-auto mx-auto my-2">  
                 <div class="card bg-light" style="width: 18rem;"> 
                  <span class="position-absolute top-0  translate-middle badge rounded-pill bg-danger" style="left : 96%">
                        ${loop[e].source.name}
@@ -245,7 +268,7 @@ function loadmore(s) {
               </div>`
 
 
-                ;
+                    ;
                 // console.log(article);
                 notes2 += article2;
 
