@@ -443,7 +443,7 @@ function myFunction(x) {
     if (x.matches) { 
         let s =document.getElementsByClassName('badge');
         for (let index = 0; index < s.length; index++) {
-            s[index].style.left = "84%";
+            s[index].style.left = "80%";
         }
     } 
 }
