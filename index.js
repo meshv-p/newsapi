@@ -73,6 +73,7 @@ function loaddata(s) {
             // console.log(obj.articles.);
             //    console.log(obj.articles);
 
+
             //for loop
             let date = new Date();
             for (let e = 0; e < loop.length; e++) {
@@ -96,7 +97,7 @@ function loaddata(s) {
 
                 `<div class="col-auto mx-auto my-2">  
                   <div class="card bg-light" style="width: 18rem;"> 
-                   <span class="position-absolute top-0  translate-middle badge rounded-pill bg-danger" style="left : 96%">
+                   <span class="position-absolute top-0  translate-middle badge rounded-pill bg-danger" style="left : 96%" >
                          ${loop[e].source.name}
                     </span>
                       <img class="card-img-top" src=${loop[e].urlToImage ? loop[e].urlToImage : "https://s.w-x.co/in-earthshine%281%29.jpg"}  alt="image">
@@ -124,7 +125,7 @@ function loaddata(s) {
             }
 
 
-
+            
 
             // loop.map(function (e) {
             //     let article = `
@@ -438,3 +439,15 @@ function searchnews() {
     xhr.send();
 }
 
+function myFunction(x) {
+    if (x.matches) { 
+        let s =document.getElementsByClassName('badge');
+        for (let index = 0; index < s.length; index++) {
+            s[index].style.left = "84%";
+        }
+    } 
+}
+
+var x = window.matchMedia("(max-width: 400px)")
+myFunction(x) // Call listener function at run time
+x.addListener(myFunction) // Attach listener function on state changes
